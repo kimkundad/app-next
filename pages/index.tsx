@@ -1,9 +1,45 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { Inter } from '@next/font/google'
-import styles from '@/styles/Home.module.css'
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
+import NaviTop from '@/components/NaviTop/';
+import { FcAssistant, FcDonate, FcInTransit } from 'react-icons/fc';
+import { Box,Table,
+  Thead,
+  Tbody,
+  Tfoot,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
+  TableContainer, Card, Flex, Spacer, Stack, SimpleGrid, Icon, Text , Center } from "@chakra-ui/react";
 
-const inter = Inter({ subsets: ['latin'] })
+  import img1 from '@/public/img/img_1.jpg'
+  import img2 from '@/public/img/img_2.jpg'
+  import img3 from '@/public/img/img_3.jpg'
+
+const Feature = ({ icon, title }: { icon: string, title: string } ) => {
+  return (
+    <Stack>
+      <Center>
+      <Flex alignItems="center"
+        w={16}
+        h={16}
+        align={'center'}
+        justify={'center'}
+        color={'white'}
+        rounded={'full'}
+        bg={'gray.100'}
+        mb={1}>
+        {icon}
+      </Flex>
+      </Center>
+      <Center>
+      <Text fontSize='xs' alignItems="center" fontWeight={600}>{title}</Text>
+      </Center>
+    </Stack>
+  );
+};
 
 export default function Home() {
   return (
@@ -14,110 +50,94 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <div className={styles.description}>
-          <p>
-            Get started by editing&nbsp;
-            <code className={styles.code}>pages/index.tsx</code>
-          </p>
-          <div>
-            <a
-              href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              By{' '}
-              <Image
-                src="/vercel.svg"
-                alt="Vercel Logo"
-                className={styles.vercelLogo}
-                width={100}
-                height={24}
-                priority
-              />
-            </a>
-          </div>
-        </div>
+      <Box pt="35px">
+      <Flex>
+        <Box>
+        <Text fontSize='xl'>คุณ Kim Kundad</Text>
+        </Box>
+        <Spacer />
+        <Flex direction="column">
+        <Text fontSize='md' color="gray.600">ยอดเงินคงเหลือ</Text>
+        <Text fontSize='xl'>5,200</Text>
+        </Flex>
+      </Flex>
+      <Card>
+      <SimpleGrid columns={{ base: 3, md: 3 }} spacing={10} p={2}>
+        <Feature
+          icon={<Icon as={FcAssistant} w={10} h={10} />}
+          title={'ติดต่อเรา'}
+        />
+        <Feature
+          icon={<Icon as={FcDonate} w={10} h={10} />}
+          title={'เครดิต '}
+        />
+        <Feature
+          icon={<Icon as={FcInTransit} w={10} h={10} />}
+          title={'จัดส่ง'}
+        />
+      </SimpleGrid>
+      </Card>
+      <Text fontSize='xl' mt="10px">แยก Components</Text>
+      <Box>
+        <NaviTop title={'เครดิต '} icon={<Icon as={FcInTransit} w={10} h={10} />} />
+      </Box>
+      <Text fontSize='xl' mt="10px">โปรโมชั่น</Text>
+      <Card mt="10px">
+      {/* https://www.npmjs.com/package/react-responsive-carousel */}
+        <Carousel showArrows={true} autoPlay={true} showThumbs={false} infiniteLoop={true} >
+                <div>
+                    <img src={img1.src} />
+                </div>
+                <div>
+                    <img src={img2.src} />
+                </div>
+                <div>
+                    <img src={img3.src} />
+                </div>
+        </Carousel>
+      </Card>
+      <Text fontSize='xl' mt="10px">ธุรกรรมล่าสุด</Text>
+      <Card mt="10px">
+      {/* https://chakra-ui.com/docs/components/table */}
+        <TableContainer>
+          <Table variant='simple'>
+            <TableCaption>Imperial to metric conversion factors</TableCaption>
+            <Thead>
+              <Tr>
+                <Th>To convert</Th>
+                <Th>into</Th>
+                <Th isNumeric>multiply by</Th>
+              </Tr>
+            </Thead>
+            <Tbody>
+              <Tr>
+                <Td>inches</Td>
+                <Td>millimetres (mm)</Td>
+                <Td isNumeric>25.4</Td>
+              </Tr>
+              <Tr>
+                <Td>feet</Td>
+                <Td>centimetres (cm)</Td>
+                <Td isNumeric>30.48</Td>
+              </Tr>
+              <Tr>
+                <Td>yards</Td>
+                <Td>metres (m)</Td>
+                <Td isNumeric>0.91444</Td>
+              </Tr>
+            </Tbody>
+            <Tfoot>
+              <Tr>
+                <Th>To convert</Th>
+                <Th>into</Th>
+                <Th isNumeric>multiply by</Th>
+              </Tr>
+            </Tfoot>
+          </Table>
+        </TableContainer>
+      </Card>
 
-        <div className={styles.center}>
-          <Image
-            className={styles.logo}
-            src="/next.svg"
-            alt="Next.js Logo"
-            width={180}
-            height={37}
-            priority
-          />
-          <div className={styles.thirteen}>
-            <Image
-              src="/thirteen.svg"
-              alt="13"
-              width={40}
-              height={31}
-              priority
-            />
-          </div>
-        </div>
-
-        <div className={styles.grid}>
-          <a
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Find in-depth information about Next.js features and&nbsp;API.
-            </p>
-          </a>
-
-          <a
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Learn <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Learn about Next.js in an interactive course with&nbsp;quizzes!
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Discover and deploy boilerplate example Next.js&nbsp;projects.
-            </p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Instantly deploy your Next.js site to a shareable URL
-              with&nbsp;Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
+      </Box>
     </>
   )
 }
