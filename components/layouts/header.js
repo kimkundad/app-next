@@ -3,7 +3,7 @@ import logo from '@/public/img/logo-shopee.png'
 
 export default function Header() {
 
-    console.log(logo)
+    
   return (
     <>
       <Box pb="48px">

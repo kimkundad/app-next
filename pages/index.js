@@ -18,7 +18,7 @@ import { Box,Table,
   import img2 from '@/public/img/img_2.jpg'
   import img3 from '@/public/img/img_3.jpg'
 
-const Feature = ({ icon, title }: { icon: string, title: string } ) => {
+const Feature = ({ icon, title }) => {
   return (
     <Stack>
       <Center>

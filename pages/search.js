@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const myLoader = ({ src, width }: { src: string, width: string }) => {
+const myLoader = ({ src, width }) => {
     return `../img/icon/${src}?w=${width}`
   }
 
