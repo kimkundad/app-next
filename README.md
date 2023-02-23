@@ -5,3 +5,6 @@
 5. yarn install or npm install
 6. yarn build or npm run build
 7.yarn dev or npm run dev
+
+
+8. npm install --save react-infinite-scroll-component
