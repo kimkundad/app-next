@@ -9,6 +9,6 @@
 
 8. npm install --save react-infinite-scroll-component
 
-9. yarn add @chakra-ui/icon
+9. npm i @chakra-ui/react @chakra-ui/icons 
 10. yarn add axios
 11. yarn add redux react-redux redux-persist
