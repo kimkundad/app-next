@@ -1,7 +1,7 @@
 import React, { useCallback } from "react";
 import { ReactElement } from 'react';
 import { Box, SimpleGrid, Icon, Text, Stack, Flex  } from '@chakra-ui/react'
-import { FcAssistant, FcDonate, FcInTransit } from 'react-icons/fc';
+import { FcAssistant, FcDonate, FcInTransit, FcBusinessman } from 'react-icons/fc';
 import {
     BottomNavigation,
     BottomNavigationItem,
@@ -23,7 +23,6 @@ export default function Footer() {
         },
         [router.push]
       );
-
     return (
       <>
         <Box className="main-footer-b" b={0} pos="fixed" w='100%' >
@@ -45,6 +44,12 @@ export default function Footer() {
                         <BottomNavigationIcon as={FcInTransit} h="30px" w="30px"/>
                         <BottomNavigationLabel>Favorites</BottomNavigationLabel>
                     </BottomNavigationItem>
+
+                    <BottomNavigationItem value="/register" w='100%'>
+                        <BottomNavigationIcon as={FcBusinessman} h="30px" w="30px"/>
+                        <BottomNavigationLabel>Register</BottomNavigationLabel>
+                    </BottomNavigationItem>
+
                     </Flex>
                 </BottomNavigation>
                 </Box>
