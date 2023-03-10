@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import axios from 'axios'
 import Router from "next/router";
 import { getUserInfo } from '@/store/slices/userinfo'
+import { setCookie } from 'cookies-next';
 
 const initialState = {
     isLoading: false,
@@ -64,6 +65,7 @@ export const getUserAuthen = (user, router) => async dispatch => {
         if (response.status == 200) {
             console.log(router,'มี router')
             console.log('access_token', response.data.access_token)
+            setCookie('access_token', response.data.access_token, { maxAge: 60 * 6 * 24 });
             // window.location = '/profile';  
             dispatch(slice.actions.authenSuccess(response.data.access_token))
             dispatch(getUserInfo(router))

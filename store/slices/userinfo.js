@@ -84,6 +84,37 @@ export const getUserInfo = (router) => async (dispatch, getState) => {
 }
 
 
+export const getUserInfo2 = (router) => async (dispatch, getState) => {
+    dispatch(slice.actions.getUserPending())
+
+    const { authen }  = getState()
+    
+    axios.request({
+        method: "GET",
+        url: 'http://127.0.0.1:8000/api/auth/user-profile',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          "Authorization":`Bearer ${authen.token}`
+        },
+     })
+     .then(function (response) {
+       //  console.log(response)
+        if (response.status == 200) {
+            console.log('มีข้อมูลนะ')
+          //  location.href = '/profile';  
+         //  dispatch(slice.actions.getUserSuccess(response.data))
+         return response.data
+        } 
+     })
+     .catch((response) => {
+        console.log(response)
+       // dispatch(slice.actions.getUserFailed(JSON.stringify(response)))
+     })
+
+}
+
+
 
 
 export default slice;

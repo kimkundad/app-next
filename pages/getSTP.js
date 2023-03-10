@@ -1,4 +1,5 @@
-
+import { connect,useDispatch, useSelector} from 'react-redux'
+import { getCookies, getCookie, setCookie, deleteCookie } from 'cookies-next';
 import {
     Box, Heading,
     Avatar,
@@ -14,9 +15,15 @@ import {
     SimpleGrid 
 } from "@chakra-ui/react";
 import Head from 'next/head'
-
+import useProfile from '@/hooks/useProfile'
 
 function getSTP({ users }) {
+
+  const { data: profile } = useProfile()
+
+  console.log(profile);
+  console.log('profile', getCookie('access_token'));
+  
     return (
         <>
             <Head>
@@ -25,8 +32,8 @@ function getSTP({ users }) {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <Box pt="35px">
-                <Text fontSize='xl'>ดึงข้อมูล getStaticProps</Text>
+            <Box pt="55px">
+                <Text fontSize='xl'>ดึงข้อมูล getStaticProps { profile?.email }</Text>
                 <SimpleGrid gap={4} columns={{ base: 1, md: 2 }}>
                 {users.map((post) => (
                     // <li key={post.id}>{post.name}</li>
@@ -85,9 +92,11 @@ function getSTP({ users }) {
     )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps({store}) {
 
-    const res = await fetch(`https://bebfans.com/myapi/get_user_all`)
+
+
+    const res = await fetch(`https://bebfans.com/myapi/get_user_all/`)
     const users = await res.json()
 
     return { props: { users } }
