@@ -27,7 +27,8 @@ import Link from 'next/link'
 import Head from 'next/head'
 
 
-function BlogDetail({ post }) {
+function BlogDetail({ product }) {
+
     return (
         <>
             <Head>
@@ -36,44 +37,39 @@ function BlogDetail({ post }) {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <Box pt="35px">
-                <Text fontSize='xl'>{post.title}</Text>
-                <Text fontSize='md'>{post.body}</Text>
+            <Box pt="55px">
+                <Text fontSize='xl'>{product?.data?.data?.get_course_info}</Text>
+                <Text fontSize='md'>{product?.data?.data?.get_course_info}</Text>
             </Box>
         </>
     )
 }
 
 export async function getStaticProps({ params }) {
-
-    const id = params.id
-
-    const res = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
-    const post = await res.json()
-
-    return {
-        props: {
-          post,
-        },
-      }
-
+  const id = params.id;
+  const res = await fetch(`https://www.learnsbuy.com/api/get_course_infox/${id}`);
+  const product = await res.json();
+  return {
+    props: {
+      product,
+    },
+  };
 }
 
 export async function getStaticPaths() {
-    const url = `https://jsonplaceholder.typicode.com/posts`
-    const res = await fetch(url)
-    const posts = await res.json()
-  
-    const paths = posts.map((post) => {
-      return {
-        params: { id: String(post.id) },
-      }
-    })
-  
+  const url = `https://www.learnsbuy.com/api/all_cource_app/1`;
+  const res = await fetch(url);
+  const posts = await res.json();
+  const paths = posts?.data?.get_course.map((post) => {
     return {
-      paths,
-      fallback: false,
-    }
-  }
+      params: { id: String(post.c_id) },
+    };
+  });
+
+  return {
+    paths,
+    fallback: false,
+  };
+}
 
 export default BlogDetail

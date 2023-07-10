@@ -1,3 +1,4 @@
+import React from 'react';
 import { connect,useDispatch, useSelector} from 'react-redux'
 import { getCookies, getCookie, setCookie, deleteCookie } from 'cookies-next';
 import {
@@ -15,14 +16,18 @@ import {
     SimpleGrid 
 } from "@chakra-ui/react";
 import Head from 'next/head'
-import useProfile from '@/hooks/useProfile'
+import UseProfile from '@/hooks/useProfile'
+import data from '@emoji-mart/data'
+import Picker from '@emoji-mart/react'
+
 
 function getSTP({ users }) {
 
-  const { data: profile } = useProfile()
+  const { data: Profile } = UseProfile()
 
-  console.log(profile);
-  console.log('profile', getCookie('access_token'));
+  console.log('Profile:',Profile);
+  console.log('Profile', getCookie('access_token'));
+  
   
     return (
         <>
@@ -33,7 +38,11 @@ function getSTP({ users }) {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <Box pt="55px">
-                <Text fontSize='xl'>ดึงข้อมูล getStaticProps { profile?.email }</Text>
+                <Text fontSize='xl'>ดึงข้อมูล getStaticProps { Profile?.email }</Text>
+                <Image
+                  w={'100'}
+                  src={'data:image/png;base64,SW52YWxpZCB0b2tlbg=='}
+                />
                 <SimpleGrid gap={4} columns={{ base: 1, md: 2 }}>
                 {users.map((post) => (
                     // <li key={post.id}>{post.name}</li>

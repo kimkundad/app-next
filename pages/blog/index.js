@@ -42,15 +42,15 @@ function Blog({ users }) {
                     <TableContainer>
                         <Table variant='simple'>
                             <Tbody>
-                                {users.map((post) => (
+                                {users?.data?.get_course?.map((post) => (
                                     // <li key={post.id}>{post.name}</li>
-                                    <Tr key={post.id}>
+                                    <Tr key={post.c_id}>
                                         <Td isNumeric>
-                                            <Link href={'/blog/'+post.id}>
+                                            <Link href={'/blog/'+post.c_id}>
                                                 Go
                                             </Link>
                                         </Td>
-                                        <Td>{post.title}</Td>
+                                        <Td></Td>
                                     </Tr>
                                 ))}
                             </Tbody>
@@ -64,7 +64,7 @@ function Blog({ users }) {
 
 export async function getServerSideProps() {
 
-    const res = await fetch(`https://jsonplaceholder.typicode.com/posts/`)
+    const res = await fetch(`https://www.learnsbuy.com/api/all_cource_app/1`)
     const users = await res.json()
 
     return { props: { users } }

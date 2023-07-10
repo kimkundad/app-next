@@ -19,30 +19,24 @@ import {
   } from '@chakra-ui/react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
 import Head from 'next/head'
-import { postRegis } from '@/store/slices/register'
+import { getUserAuthen } from '@/store/slices/authen'
 
 
-function Register() {
+function Login() {
 
     const router = useRouter()
     const dispatch = useDispatch()
 
-    const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [password_confirmation, setConPassword] = useState('');
 
     const [showPassword, setShowPassword] = useState(false);
 
-    const onChangeName = (e) => {
-        setName(e.target.value);
-    };
+ 
     const onChangeEmail = (e) => {
         setEmail(e.target.value);
     };
-    const onChangeConPassword = (e) => {
-        setConPassword(e.target.value);
-    };
+
     const onChangePassword = (e) => {
         setPassword(e.target.value);
     };
@@ -52,12 +46,10 @@ function Register() {
 
         const user = {
             email,
-            name,
             password,
-            password_confirmation
           }
    
-          dispatch(postRegis(user))
+          dispatch(getUserAuthen(user))
           console.log('--->', user)
     }
 
@@ -78,7 +70,7 @@ function Register() {
       <Stack spacing={8} mx={'auto'} maxW={'xxl'} py={12} px={6}>
         <Stack align={'center'}>
           <Heading fontSize={'4xl'} textAlign={'center'}>
-            Sign up
+            Sign in
           </Heading>
           <Text fontSize={'lg'} color={'gray.600'}>
             to enjoy all of our cool features ✌️
@@ -90,11 +82,6 @@ function Register() {
           boxShadow={'lg'}
           p={8}>
           <Stack spacing={4}>
-
-            <FormControl id="firstName" isRequired>
-                  <FormLabel>UserName</FormLabel>
-                  <Input type="text" name="name" onChange={onChangeName}/>
-            </FormControl>
             
             <FormControl id="email" isRequired>
               <FormLabel>Email address</FormLabel>
@@ -115,21 +102,7 @@ function Register() {
                 </InputRightElement>
               </InputGroup>
             </FormControl>
-            <FormControl id="password" isRequired>
-              <FormLabel>Confirm Password</FormLabel>
-              <InputGroup>
-                <Input type={showPassword ? 'text' : 'password'} name="password_confirmation" onChange={onChangeConPassword} />
-                <InputRightElement h={'full'}>
-                  <Button
-                    variant={'ghost'}
-                    onClick={() =>
-                      setShowPassword((showPassword) => !showPassword)
-                    }>
-                    {showPassword ? <ViewIcon /> : <ViewOffIcon />}
-                  </Button>
-                </InputRightElement>
-              </InputGroup>
-            </FormControl>
+           
             <Stack spacing={10} pt={2}>
               <Button
                 onClick={handleSubmit}
@@ -145,7 +118,7 @@ function Register() {
             </Stack>
             <Stack pt={6}>
               <Text align={'center'}>
-                Already a user? <Link href="/login" color={'blue.400'}>Login</Link>
+                If you not have account? <Link href="/register" color={'blue.400'}>Login</Link>
               </Text>
             </Stack>
           </Stack>
@@ -157,4 +130,4 @@ function Register() {
     )
 }
 
-export default Register
+export default Login

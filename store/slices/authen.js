@@ -62,7 +62,7 @@ export const getUserAuthen = (user, router) => async dispatch => {
      })
      .then(function (response) {
         console.log(response)
-        if (response.status == 200) {
+        if (response.status == 200) { 
             console.log(router,'มี router')
             console.log('access_token', response.data.access_token)
             setCookie('access_token', response.data.access_token, { maxAge: 60 * 6 * 24 });

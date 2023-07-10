@@ -18,7 +18,9 @@ import { Box,Table,
   import img2 from '@/public/img/img_2.jpg'
   import img3 from '@/public/img/img_3.jpg'
 
-  
+  const openInNewTab = (url) => {
+    window.open(url, "_blank", "noreferrer");
+  };
 
 const Feature = ({ icon, title }) => {
   return (
@@ -55,7 +57,7 @@ export default function Home() {
       <Box pt="35px">
       <Flex>
         <Box>
-        <Text fontSize='xl'>คุณ Kim Kundad</Text>
+        <Text fontSize='xl' onClick={() => openInNewTab("https://plainenglish.io")}>คุณ Kim Kundad</Text>
         </Box>
         <Spacer />
         <Flex direction="column">
